@@ -123,22 +123,23 @@
  ┃ ┗ 📜__init__.py  
  ┣ 📂static  
  ┃ ┣ 📂assets  
- ┃ ┃ ┗ 📂img  
- ┃ ┣ 📂js
- ┃ ┃ ┣ 📂apps  
+ ┃ ┃ ┗ 📂img
  ┃ ┣ 📂css  
  ┃ ┃ ┣ 📜loding.css    
  ┃ ┃ ┣ 📜style.css    
- ┃ ┃ ┗ 📜register.css    
- ┣ 📂tech_blog  
- ┃ ┣ 📂__pycache__  
- ┃ ┣ 📜.env  
- ┃ ┣ 📜asgi.py  
- ┃ ┣ 📜settings.py  
- ┃ ┣ 📜urls.py  
- ┃ ┣ 📜wsgi.py  
- ┃ ┗ 📜__init__.py  
- ┣ 📂templates  
+ ┃ ┃ ┗ 📜register.css   
+ ┃ ┣ 📂js
+ ┃ ┃ ┣ 📜chatbot.js    
+ ┃ ┃ ┣ 📜comment.js
+ ┃ ┃ ┣ 📜loading.js    
+ ┃ ┃ ┣ 📜post.js
+ ┃ ┃ ┣ 📜register.js    
+ ┃ ┃ ┣ 📜slider-img.js  
+ ┃ ┃ ┗ 📜tab.js  
+ ┣ 📂templates
+ ┃ ┣ 📂base  
+ ┃ ┃ ┣ 📜base_login.html  
+ ┃ ┃ ┗ 📜base.html  
  ┃ ┣ 📂accounts  
  ┃ ┃ ┣ 📜login.html  
  ┃ ┃ ┣ 📜password_change.html  
@@ -146,12 +147,6 @@
  ┃ ┃ ┣ 📜profile_edit.html  
  ┃ ┃ ┣ 📜signup.html  
  ┃ ┃ ┗ 📜user_list.html  
- ┃ ┣ 📂blog  
- ┃ ┃ ┣ 📜blog_base.html  
- ┃ ┃ ┣ 📜post_detail.html  
- ┃ ┃ ┣ 📜post_form.html  
- ┃ ┃ ┣ 📜post_list.html  
- ┃ ┃ ┗ 📜post_not_found.html  
  ┃ ┣ 📂board  
  ┃ ┃ ┣ 📜board_base.html  
  ┃ ┃ ┣ 📜board_post_detail.html  
