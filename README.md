@@ -34,6 +34,33 @@
   pw : 
   ```
 
+### 2.3 URL 구조(모놀리식)
+- register
+
+| App       | URL                                        | Views Function    | HTML File Name                        | Note           |
+|-----------|--------------------------------------------|-------------------|---------------------------------------|----------------|
+| register  | 'signup/'                                  | user_signup       | register/signup.html                  | 회원가입<br>프로필 이미지 추가         |
+| register  | 'login/'                                   | user_login        | register/login.html                   | 로그인           |
+| register  | 'logout/'                                  | user_logout       |                                       | 로그아웃         |
+| register  | 'profile/'                                 | user_profile      | register/user_profile.html            | 비밀번호변경기능<br>프로필 수정<br>닉네임추가 |
+
+
+- post
+
+| App       | URL                                        | Views Function    | HTML File Name                        | Note           |
+|-----------|--------------------------------------------|-------------------|---------------------------------------|----------------|
+| post      | '/'                                        | post_list         | post/post_list.html                   | 메인 페이지     |
+| post      | 'create/'                                  | post_create       | post/post_create.html                 | 게시글 생성 페이지          |
+| post      | 'detailPage/'                              | post_detail_list  | post/post_detail_list.html            | 세부 내역 목록 페이지         |
+| post      | '<int:pk>/'                                | post_detail       | post/post_detail.html                 | 세부 내역 페이지 |
+| post      | '<int:pk>/update'                          | post_update       | post/post_create.html                 | 게시글 수정     |
+| post      | '<int:pk>/delete'                          | post_delete       | post/post_detail.html                 | 게시글 삭제     |
+| post      | 'add_reply/<int:comment_id>/'              | add_reply         | post/post_detail.html                 | 댓글 / 대댓글 생성 |
+| post      | 'delete_comment/<int:comment_id>'          | delete_comment    | post/post_detail.html                 | 댓글 삭제       |
+| post      | 'update_comment/<int:comment_id>'          | update_comment    | post/post_detail.html                 | 댓글 수정       |
+| post      | 'toggle_favorite/<int:pk>'                 | toggle_favorite   | post/post_detail.html                 | 즐겨찾기        |
+
+
 
 ## 3. 요구사항 명세와 기능 명세 
 
