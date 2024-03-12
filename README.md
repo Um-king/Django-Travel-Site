@@ -139,28 +139,29 @@
  ┣ 📂templates
  ┃ ┣ 📂base  
  ┃ ┃ ┣ 📜base_login.html  
- ┃ ┃ ┗ 📜base.html  
- ┃ ┣ 📂accounts  
+ ┃ ┃ ┗ 📜base.html
+ ┃ ┣ 📂post  
+ ┃ ┃ ┣ 📜post_create.html  
+ ┃ ┃ ┣ 📜post_detail_list.html  
+ ┃ ┃ ┣ 📜post_detail.html  
+ ┃ ┃ ┗ 📜post_list.html   
+ ┃ ┣ 📂register  
  ┃ ┃ ┣ 📜login.html  
- ┃ ┃ ┣ 📜password_change.html  
- ┃ ┃ ┣ 📜profile.html  
- ┃ ┃ ┣ 📜profile_edit.html  
  ┃ ┃ ┣ 📜signup.html  
- ┃ ┃ ┗ 📜user_list.html  
- ┃ ┣ 📂board  
- ┃ ┃ ┣ 📜board_base.html  
- ┃ ┃ ┣ 📜board_post_detail.html  
- ┃ ┃ ┣ 📜board_post_form.html  
- ┃ ┃ ┗ 📜board_post_list.html  
- ┃ ┣ 📂main  
- ┃ ┃ ┗ 📜index.html  
- ┃ ┣ 📜404.html  
- ┃ ┗ 📜base.html  
+ ┃ ┃ ┗ 📜user_profile.html
+ ┣ 📂tutorialdjango
+ ┃ ┣ 📂__pycache__  
+ ┃ ┣ 📜asgi.py  
+ ┃ ┣ 📜settings.py  
+ ┃ ┣ 📜urls.py  
+ ┃ ┣ 📜wsgi.py  
+ ┃ ┗ 📜__init__.py  
  ┣ 📜CONVENTION.md  
  ┣ 📜db.sqlite3  
  ┣ 📜manage.py  
  ┣ 📜README.md  
- ┗ 📜requirements.txt  
+ ┣ 📜requirements.txt  
+ ┗ 📜venv.txt  
 ```
 
 ### 4.2 개발 일정(WBS)
