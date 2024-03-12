@@ -94,7 +94,79 @@
 
 ## 4. 프로젝트 구조와 개발 일정
 ### 4.1 프로젝트 구조
-
+```
+📦travel
+ ┣ 📂media  
+ ┃ ┣ 📂posts  
+ ┃ ┣ 📂users 
+ ┣ 📂register  
+ ┃ ┣ 📂migrations  
+ ┃ ┣ 📂__pycache__  
+ ┃ ┣ 📜admin.py  
+ ┃ ┣ 📜apps.py  
+ ┃ ┣ 📜forms.py  
+ ┃ ┣ 📜models.py  
+ ┃ ┣ 📜tests.py  
+ ┃ ┣ 📜urls.py  
+ ┃ ┣ 📜views.py  
+ ┃ ┗ 📜__init__.py  
+ ┣ 📂post  
+ ┃ ┣ 📂migrations  
+ ┃ ┣ 📂__pycache__  
+ ┃ ┣ 📜admin.py  
+ ┃ ┣ 📜apps.py  
+ ┃ ┣ 📜forms.py  
+ ┃ ┣ 📜models.py  
+ ┃ ┣ 📜tests.py  
+ ┃ ┣ 📜urls.py  
+ ┃ ┣ 📜views.py  
+ ┃ ┗ 📜__init__.py  
+ ┣ 📂static  
+ ┃ ┣ 📂assets  
+ ┃ ┃ ┗ 📂img  
+ ┃ ┣ 📂js
+ ┃ ┃ ┣ 📂apps  
+ ┃ ┣ 📂css  
+ ┃ ┃ ┣ 📜loding.css    
+ ┃ ┃ ┣ 📜style.css    
+ ┃ ┃ ┗ 📜register.css    
+ ┣ 📂tech_blog  
+ ┃ ┣ 📂__pycache__  
+ ┃ ┣ 📜.env  
+ ┃ ┣ 📜asgi.py  
+ ┃ ┣ 📜settings.py  
+ ┃ ┣ 📜urls.py  
+ ┃ ┣ 📜wsgi.py  
+ ┃ ┗ 📜__init__.py  
+ ┣ 📂templates  
+ ┃ ┣ 📂accounts  
+ ┃ ┃ ┣ 📜login.html  
+ ┃ ┃ ┣ 📜password_change.html  
+ ┃ ┃ ┣ 📜profile.html  
+ ┃ ┃ ┣ 📜profile_edit.html  
+ ┃ ┃ ┣ 📜signup.html  
+ ┃ ┃ ┗ 📜user_list.html  
+ ┃ ┣ 📂blog  
+ ┃ ┃ ┣ 📜blog_base.html  
+ ┃ ┃ ┣ 📜post_detail.html  
+ ┃ ┃ ┣ 📜post_form.html  
+ ┃ ┃ ┣ 📜post_list.html  
+ ┃ ┃ ┗ 📜post_not_found.html  
+ ┃ ┣ 📂board  
+ ┃ ┃ ┣ 📜board_base.html  
+ ┃ ┃ ┣ 📜board_post_detail.html  
+ ┃ ┃ ┣ 📜board_post_form.html  
+ ┃ ┃ ┗ 📜board_post_list.html  
+ ┃ ┣ 📂main  
+ ┃ ┃ ┗ 📜index.html  
+ ┃ ┣ 📜404.html  
+ ┃ ┗ 📜base.html  
+ ┣ 📜CONVENTION.md  
+ ┣ 📜db.sqlite3  
+ ┣ 📜manage.py  
+ ┣ 📜README.md  
+ ┗ 📜requirements.txt  
+```
 
 ### 4.2 개발 일정(WBS)
 ```mermaid
