@@ -59,7 +59,34 @@
 | post      | 'delete_comment/<int:comment_id>'          | delete_comment    | post/post_detail.html                 | 댓글 삭제       |
 | post      | 'update_comment/<int:comment_id>'          | update_comment    | post/post_detail.html                 | 댓글 수정       |
 | post      | 'toggle_favorite/<int:pk>'                 | toggle_favorite   | post/post_detail.html                 | 즐겨찾기        |
+| post      | 'get_ai_response'                          | get_ai_response   | post/post_create.html                 | GPT 응답        |
 
+
+### 2.4 URL 구조(마이크로식)
+
+|app:register|HTTP Method|설명|로그인 권한 필요|작성자 권한 필요|
+|:-|:-|:-|:-:|:-:|
+|signup/|POST|회원가입|||
+|login/|POST|로그인|||
+|logout/|POST|로그아웃| ✅ ||
+|\<int:pk\>/|GET|프로필 조회| ✅ ||
+|\<int:pk\>/|PUT|프로필 수정| ✅ | ✅ |
+<br>  
+
+|app:post|HTTP Method|설명|로그인 권한 필요|작성자 권한 필요|
+|:-|:-|:-|:-:|:-:|
+|/|GET|메인| ||
+|create/|POST|게시물 작성| ✅ ||
+|detailPage/|POST|게시물 세부 리스트| ||
+|<int:pk>/|POST|게시물 확인| ✅ | ✅ |
+|<int:pk>/update/|POST|게시물 수정| ✅ | ✅ |
+|<int:pk>/delete/|POST|게시물 삭제| ✅ | ✅ |
+|add_reply/<int:comment_id>/|POST|댓글 / 대댓글 생성| ✅ | |
+|delete_comment/<int:comment_id>/|POST|댓글 삭제 | ✅ | ✅ |
+|update_comment/<int:comment_id>/|POST|댓글 수정 | ✅ | ✅ |
+|toggle_favorite/<int:pk>/|GET|즐겨찾기 추가/제거| ✅ | ✅ |
+|get_ai_response/|POST|GPT 응답| ✅ | |
+<br>
 
 
 ## 3. 요구사항 명세와 기능 명세 
