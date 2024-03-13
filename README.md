@@ -371,6 +371,34 @@ gantt
     </tbody>
 </table>
 
+<table border="1">
+    <tbody>
+        <tr>
+            <td style="text-align: center;">로그인 시연 영상</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <img src="README_img/login.gif" width="70%"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">메인 페이지 시연 영상</td>
+        </tr>
+        <tr>
+	     <td style="text-align: center;">
+                <img src="README_img/main.gif" width="70%"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">게시글 생성 시연 영상</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <img src="README_img/create.gif" width="70%"/>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 ## 6. 데이터베이스 모델링(ERD)
 <p align="center">
