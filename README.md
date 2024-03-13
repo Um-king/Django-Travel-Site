@@ -252,3 +252,39 @@ gantt
     시스템 테스팅: 2024-03-13, 2024-03-14
     문서작업: 2024-03-13, 2024-03-14
 ```
+
+
+## 5. 와이어프레임 / UI
+
+### 5.1 와이어프레임
+<table>
+    <tbody>
+        <tr>
+            <td>메인</td>
+            <td>로그인</td>
+        </tr>
+        <tr>
+            <td>
+		<img src="README_img/01_project.png" width="100%"/>
+            </td>
+            <td>
+                <img src="README_img/02_Login Page.png" width="100%"/>
+            </td>
+        </tr>
+        <tr>
+           <td>
+                <img src="README_img/03_Main Page.png" width="100%"/>
+            </td>
+	     <td>
+                <img src="README_img/04_Chatting Page.png" width="100%"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="README_img/05_Result Page.png" width="100%"/>
+            </td>
+            <td>
+            </td>
+        </tr>
+    </tbody>
+</table>
