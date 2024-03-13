@@ -257,19 +257,27 @@ gantt
 ## 5. 와이어프레임 / UI
 
 ### 5.1 와이어프레임
-<table>
+<table border="1" style="width:100%;">
+  <colgroup>
+    <col style="width: 50%;">
+    <col style="width: 50%;">
+  </colgroup>
     <tbody>
         <tr>
-            <td>메인</td>
             <td>로그인</td>
+            <td>회원가입</td>
         </tr>
         <tr>
             <td>
-		<img src="README_img/wireframe_login.png" width="100%"/>
+		        <img src="README_img/wireframe_login.png" width="100%"/>
             </td>
             <td>
                 <img src="README_img/wireframe_signup.png" width="100%"/>
             </td>
+        </tr>
+        <tr>
+            <td>프로필</td>
+            <td>메인</td>
         </tr>
         <tr>
            <td>
@@ -280,12 +288,20 @@ gantt
             </td>
         </tr>
         <tr>
+            <td>게시글 생성</td>
+            <td>세부 내역 목록</td>
+        </tr>
+        <tr>
             <td>
                 <img src="README_img/wireframe_create.png" width="100%"/>
             </td>
             <td>
                 <img src="README_img/wireframe_detail_list.png" width="100%"/>
             </td>
+        </tr>
+        <tr>
+            <td>세부 내역</td>
+            <td></td>
         </tr>
         <tr>
             <td>
@@ -299,11 +315,87 @@ gantt
 
 
 ### 5.2 화면 설계
+<table border="1" style="width:100%;">
+  <colgroup>
+    <col style="width: 50%;">
+    <col style="width: 50%;">
+  </colgroup>
+    <tbody>
+        <tr>
+            <td>로그인</td>
+            <td>메인</td>
+        </tr>
+        <tr>
+            <td>
+		        <img src="README_img/ui_login.png" width="100%"/>
+            </td>
+            <td rowspan="3">
+                <img src="README_img/ui_main.png" width="100%"/>
+            </td>
+        </tr>
+         <tr>
+            <td>회원가입</td>
+        </tr>
+        <tr>
+           <td>
+                <img src="README_img/ui_signup.png" width="100%"/>
+            </td>
+        </tr>
+        <tr>
+            <td>프로필</td>
+            <td>세부 내역 목록</td>
+        </tr>
+        <tr>
+            <td>
+		        <img src="README_img/ui_profile.png" width="100%"/>
+            </td>
+            <td>
+                <img src="README_img/ui_detail_list.png" width="100%"/>
+            </td>
+        </tr>
+        <tr>
+            <td>생성</td>
+            <td>세부 내역</td>
+        </tr>
+        <tr>
+            <td>
+		        <img src="README_img/ui_create.png" width="100%"/>
+            </td>
+            <td>
+                <img src="README_img/ui_detail.png" width="100%"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2 style="text-align: center;">로그인 시연 영상</td>
+        </tr>
+        <tr>
+            <td colspan=2 style="text-align: center;">
+		        <img src="README_img/login.gif" width="70%"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2 style="text-align: center;">메인 페이지 시연 영상</td>
+        </tr>
+        <tr>
+            <td colspan=2 style="text-align: center;">
+		        <img src="README_img/main.gif" width="70%"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2 style="text-align: center;">생성 시연 영상</td>
+        </tr>
+        <tr>
+            <td colspan=2 style="text-align: center;">
+		        <img src="README_img/create.gif" width="70%"/>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 
 ## 6. 데이터베이스 모델링(ERD)
 <p align="center">
-<img src="README_img/ERD.png" width="60%"/>
+<img src="README_img/ERD.png" width="70%"/>
 </p>
 
 ## 7. Architecture
