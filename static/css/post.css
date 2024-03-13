@@ -1,0 +1,58 @@
+
+
+/* 카드의 전체 높이를 설정합니다. */
+ .card {
+    width: 300px; /* 고정 너비 */
+    height: 350px; /* 예시로 400px로 설정했습니다. 실제 사용하는 카드의 높이에 맞게 조정해야 합니다. */
+  }
+
+  /* 이미지 컨테이너의 높이를 카드 높이의 절반으로 설정합니다. */
+  .image-container {
+    height: 60%; /* 카드의 높이의 절반 */
+    overflow: hidden; /* 이미지가 컨테이너를 넘어가면 잘립니다. */
+  }
+
+  /* 이미지가 컨테이너 안에서 자연스럽게 보이도록 설정합니다. */
+  .image-container img {
+    width: 100%; /* 컨테이너의 너비에 맞게 설정 */
+    height: 100%; /* 컨테이너의 높이에 맞게 설정 */
+    object-fit: cover; /* 비율을 유지하며 컨테이너를 꽉 채웁니다. */
+    object-position: center; /* 이미지가 컨테이너 중앙에 위치합니다. */
+  }
+
+
+  /* Hover effect for the card */
+.bg-white:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Styling for the '+' button inside the card */
+  .add-button {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Enlarge effect on hover for the '+' icon */
+  .add-button:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Resets the style of the '+' button when focused to remove default outlines */
+  .add-button:focus {
+    border: none;
+    outline: none;
+  }
+  
+  /* The SVG icon style can be adjusted if necessary */
+  .bi bi-plus-circle {
+    width: 3em; /* Size of the icon */
+    height: 3em;
+    color: #10B981; /* A trendy color like emerald green */
+  }
+  
+
+  
+  

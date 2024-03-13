@@ -1,0 +1,33 @@
+/* loading.css 파일에 추가 */
+.loader-overlay {
+    position: fixed; /* 고정 위치 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 투명도를 가진 검은색 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 다른 요소들 위에 나타나도록 z-index 설정 */
+  }
+  
+  .loader {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* 로더와 오버레이를 함께 숨김 처리를 위한 클래스 */
+  .hidden {
+    display: none;
+  }
+  

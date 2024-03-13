@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+  <form action="{% url 'user_profile' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="flex flex-col py-2 px-5 m-10">
+  <div class="grid grid-rows-1 h-full mb-10">
+      <div class="row-span-1 py-5">
+        <div class="grid grid-cols-3 h-full">
+          <div class="col-span-1">
+            <p class='text-lg font-bold'>프로필</p>
+            <div class="bg-white border border-gray-300 rounded h-full">
+                <div class="grid grid-rows-3 h-full">
+                    <div class="row-span-2 border-gray-300 mx-auto my-auto">
+                      <label for="image-upload" class="cursor-pointer">
+                        <img id="profile-image-preview" src="{{ user.profile_image.url }}" alt="Profile Picture" class="h-32 w-32 rounded-full border border-gray-500">
+                      </label>
+                    </div>
+                    <div class="row-span-1 border-gray-300  mx-auto">
+                        <p class='text-center'>반가워요</p>
+                        <p>당신의 여행을 응원할게요</p>
+                        <input type="file" id="image-upload" name="profile_image" class="hidden" accept="image/*" onchange="previewImage(this);">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+          <div class="col-span-2 ml-3">
+            <p class='text-lg font-bold'>프로필 수정</p>
+            <div class="bg-white border border-gray-300 rounded h-full p-5 flex flex-col">
+              <div class="flex-grow">
+                  <div class="flex items-center">
+                      <span class='text-sm font-bold'>아이디&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      <input class="border border-gray-300 px-4 py-2" value="{{user.username}}" readonly id="username" name="username" > 
+                  </div>
+                  <br>
+                  <div class="flex items-center">
+                      <span class='text-sm font-bold'>이메일&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      <input class="border border-gray-300 px-4 py-2" value="{{user.email}}" readonly id="email" name="email">
+                  </div>
+                  <br>
+                  <div class="flex items-center">
+                      <span class='text-sm font-bold'>별명&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      <input class="border border-gray-300 px-4 py-2" value="{{user.nickname}}" id="nickname" name="nickname" >
+                  </div>
+                  <br>
+                  <div class="flex items-center">
+                      <span class='text-sm font-bold'>패스워드&nbsp;</span>
+                      <input class="border border-gray-300 px-4 py-2" value="********" id="password1" name="password1" >
+                      <button type="submit" class="ml-auto px-4 py-2 bg-blue-500 text-white rounded">저장</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</form>
+{% endblock %}
+
+{% block extrajs %}
+  <script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

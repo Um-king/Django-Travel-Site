@@ -1,0 +1,232 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'css/post.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="min-h-screen">
+
+      <!-- 페이지 컨텐츠 -->
+      <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- 좌측 메뉴 영역 -->
+        <div class="w-4/6 p-4">
+
+          <div class="flex flex-col h-screen">
+
+            <div class="flex-grow flex flex-col bg-white border border-gray-300 rounded-lg overflow-hidden">
+              
+              <form action="" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                
+                <!-- 이 div는 flex 컨테이너이며, 자식들이 상하로 차지할 수 있게 합니다. -->
+
+                <div class="flex h-[500px]  overflow-auto">
+                  <!-- 이 div는 자식들이 좌우로 차지할 수 있게 합니다. -->
+
+                  <div class="w-2/5 flex-shrink-0 flex items-center justify-center">
+
+                    <!-- 비율 2의 컨텐츠, 높이를 고정합니다. -->
+                      <!-- Content for Left Box -->
+                      {% if form.instance.image %}
+                        <img src="{{ form.instance.image.url }}" alt="Post Image" class="w-full h-full object-cover"/>
+                      {% else %}
+                        <img src="{% static 'assets/img/img_korea_map.png' %}" alt="Korea Map" class="x-full h-full"/>
+                      {% endif %}
+                  </div>
+                  
+                  <div class="flex-shrink-0 border-r border-gray-300 mt-3 mb-3">
+                    <!-- 구분선 -->
+                  </div>
+
+                  <div class="flex flex-col w-3/5 p-5 h-full">
+                    <!-- 여행 제목 입력 필드 -->
+                    <div class="mb-1">
+                      <label for="title" class="block text-gray-700 text-lg font-semibold">여행 제목</label>
+                      <input type="text" id="title" name="title" class="w-full px-3 py-2 border rounded" placeholder="여행의 주제에 맞는 제목을 입력해주세요." value="{{ form.title.value }}">
+                    </div>
+                  
+                    <!-- Contents 입력 필드 -->
+                    <div class="h-3/5">
+                      <label for="contents" class="block text-gray-700 text-lg font-semibold">Contents</label>
+                      <textarea id="contents" name="contents" class="w-full h-full border rounded px-3 py-2 resize-none" style="height:calc(100% - 1.5rem);">{{ form.contents.value }}</textarea>
+                    </div>
+                  
+                    <!-- 제출 버튼 -->
+                    <div class="flex justify-between items-center mt-2">
+                      <nav class="flex items-center">
+                        <!-- 이미지 아이콘 -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-gray-700 bi bi-image" viewBox="0 0 16 16">
+                          <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                          <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z"/>
+                        </svg>
+                      
+                        <!-- 이미지 업로드 라벨 -->
+                        <label for="image-upload" class="text-gray-700 font-semibold ml-2 cursor-pointer">이미지 업로드</label>
+                      
+                        <!-- 실제 이미지 업로드 input, 사용자에게 보이지 않음 -->
+                        <input type="file" id="image-upload" name="image" class="hidden" onchange="handleFileSelect(event)" accept="image/*"/>
+                        {% if form.instance.image %}
+                        <div id="image-title" class="ml-4 overflow-hidden whitespace-nowrap text-overflow-ellipsis" style="max-width: 150px;">
+                          {{ form.instance.image.name }}
+                        </div>
+                      {% else %}
+                        <div id="image-title" class="ml-4">No image uploaded</div>
+                      {% endif %}
+                      </nav>
+
+                      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">저장</button>
+                    </div>                  
+                  </div>              
+                </div>
+            </div>
+
+            <div class="h-2/5 bg-white border border-gray-300 mt-2 rounded-lg">
+              <!-- 이 div는 화면 높이의 40%를 차지합니다. -->
+              <!-- 하단 컨텐츠 -->
+              <div class="flex h-full">
+                <!-- 이 div는 자식들이 좌우로 차지할 수 있게 합니다. -->
+
+                <div class="w-2/5 flex-shrink-0 p-4">
+                  <div class="mb-4">
+                    <!-- 카테고리 드롭다운 -->
+                    <div class="mb-4 relative">
+                      <label for="category" class="block text-gray-700 text-lg font-semibold">카테고리</label>
+                      <select id="category" name="category" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="서울" {% if form.instance.category == "서울" %}selected{% endif %}>서울</option>
+                        <option value="경기도" {% if form.instance.category == "경기도" %}selected{% endif %}>경기도</option>
+                        <option value="강원도" {% if form.instance.category == "강원도" %}selected{% endif %}>강원도</option>
+                        <option value="충청도" {% if form.instance.category == "충청도" %}selected{% endif %}>충청도</option>
+                        <option value="전라도" {% if form.instance.category == "전라도" %}selected{% endif %}>전라도</option>
+                        <option value="경상도" {% if form.instance.category == "경상도" %}selected{% endif %}>경상도</option>
+                        <option value="제주도" {% if form.instance.category == "제주도" %}selected{% endif %}>제주도</option>
+                      </select>
+                    </div>
+
+                    <!-- 상세 일정 날짜 입력 -->
+                    <div class="mb-4">
+                      <label for="date-range" class="block text-gray-700 text-lg font-semibold">상세 일정</label>
+                      <div class="flex flex-wrap -mx-3 mb-2">
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                          <input class="appearance-none block w-full bg-white text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white" 
+                          type="date" 
+                          id="start-date" 
+                          name="fromDate" 
+                          value="{{ form.instance.fromDate|date:'Y-m-d'|default:today }}">
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                          <input class="appearance-none block w-full bg-white text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white" 
+                          type="date" 
+                          id="end-date" 
+                          name="toDate" 
+                          value="{{ form.instance.toDate|date:'Y-m-d' }}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="tags" class="block text-gray-700 text-lg font-semibold">태그</label>
+                   
+                          <input type="text" name="tags" id="id_tags" class="w-full px-3 py-2 border rounded" placeholder="태그를 입력해주세요." value="">
+                  </div>
+                    
+                </div>
+                
+                <div class="flex-shrink-0 border-r border-gray-300 mt-3 mb-3">
+                  <!-- 구분선 -->
+                </div>
+
+                <div class="flex flex-col w-3/5 p-2 overflow-y-auto" style="max-height: 80vh;"> <!-- 이 부분에 max-height 값을 조절합니다. -->
+                  <!-- 탭 컨테이너 -->
+                  <div id="tabs-container" class="bg-white p-3 shadow-md h-full">
+                    <!-- 탭 -->
+                    <ul class="flex border-b">
+                      <li class="tab mr-1">
+                        <a class="tab-link bg-white inline-block py-2 px-4 text-black-700 font-semibold" href="#details" data-target="details-content">상세 일정</a>
+                      </li>
+                      <li class="tab mr-1">
+                        <a class="tab-link text-black-500 inline-block py-2 px-4 hover:text-black-800 hover:bg-gray-100" href="#mission" data-target="mission-content">미션</a>
+                      </li>
+                      <li class="tab mr-1">
+                        <a class="tab-link text-black-500 inline-block py-2 px-4 hover:text-black-800 hover:bg-gray-100" href="#others" data-target="others-content">기타사항</a>
+                      </li>
+                    </ul>
+                    <!-- 탭 내용 -->
+                    <div id="details-content" class="tab-content p-4 hidden">
+                      <label for="date0310" class="block text-gray-700 text-sg mb-1">3월 10일</label>
+                      <textarea id="date0310" name="date0310" class="w-full border rounded px-3 py-2 resize-none" style="height:calc(100% - 1.5rem);"></textarea>                      
+                    </div>
+                    <div id="mission-content" class="tab-content p-4 hidden">
+                      <div class="flex flex-col h-full">
+                        <textarea id="mission-contents" name="mission-contents" class="flex-grow p-3 border rounded resize-none"></textarea>
+                      </div>
+                    </div>
+                    <div id="others-content" class="tab-content p-4 hidden">
+                      <div class="flex flex-col h-full">
+                        <textarea id="others-contents" name="subContent" class="flex-grow p-3 border rounded resize-none">{{ form.instance.subContent }}
+                        </textarea>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div> 
+                
+              </form>
+                        
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="w-2/6 pt-4 pb-4 mr-2">
+          <div class="flex flex-col h-screen border border-gray-300">
+              <div id="chat-messages" class="flex-grow overflow-y-auto p-4 space-y-4">
+                  <!-- Chat messages will be dynamically added here -->
+                  <div class="message flex items-end">
+                      <div class="profile-pic w-8 h-8 bg-white bg-center rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-robot" viewBox="0 0 16 16">
+                          <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.6 26.6 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.93.93 0 0 1-.765.935c-.845.147-2.34.346-4.235.346s-3.39-.2-4.235-.346A.93.93 0 0 1 3 9.219zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a25 25 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25 25 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135"/>
+                          <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2zM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5"/>
+                        </svg>
+                      </div>
+                      <div class="text ml-2 bg-blue-100 text-blue-800 p-2 rounded-lg">
+                          반갑습니다! 저는 여행 계획 전문가입니다.<br>여행 계획 추천을 받고 싶다면 채팅창에<br>"추천 시작"을 입력해주세요.<br>
+                          "질문 완료" 입력 시 결과를 작성합니다.
+                      </div>
+                  </div>
+              </div>
+              <div class="sticky bottom-0 flex items-center bg-white p-2">
+                <form id="chat-form" class="flex w-full">
+                  <input type="text" name = 'message-input' id="message-input" placeholder="Type a message..." class="flex-grow p-2 border border-gray-500 rounded focus:outline-none">
+                  <button type="submit" id="chatbtn" class="ml-2 bg-blue-500 text-white rounded p-2">Send</button>
+                </form>
+              </div>
+          </div>
+      </div>
+      
+        <!-- 우측 메뉴 끝 -->
+
+      </div>
+    </div>
+    {% block extrajs %}
+      <script src="{% static 'js/chatbot.js' %}"></script>
+      <script src="{% static 'js/tab.js' %}"></script>
+    {% endblock %}
+
+    <script>
+        // 이미지 업로드 이벤트 처리
+        function handleFileSelect(event) {
+          const fileInput = event.target;
+          const fileName = fileInput.files[0].name; // 첫 번째 파일의 이름을 가져옵니다.
+          const imageTitleElement = document.getElementById('image-title');
+          imageTitleElement.textContent = fileName; // 파일 이름을 div에 표시합니다.
+        }
+    </script>
+
+    
+{% endblock %}

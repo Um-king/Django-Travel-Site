@@ -1,0 +1,346 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'css/post.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container mx-auto px-10">
+
+    <!-- Main content -->
+    <main class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 mt-5">
+      <div class="flex justify-between my-4 mx-10 space-x-4">
+        <!-- Carousel for responsive section -->
+        <div class="image-slider relative border border-gray-300 rounded-lg w-4/6" style="height: 350px; overflow: hidden;">
+          <button id="prevBtn" class="ml-5 absolute left-0 top-1/2 transform -translate-y-1/2 text-black z-10" style="display: block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bg-white bi bi-caret-left-square" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+              <path d="M10.205 12.456A.5.5 0 0 0 10.5 12V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4a.5.5 0 0 0 .537.082"/>
+            </svg>
+            <!-- 왼쪽 화살표 아이콘 -->
+          </button>
+          <div class="h-full">
+            <img src="{% static 'assets/img/img_slider1.png' %}" class="image-slide" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="{% static 'assets/img/img_slider2.png' %}" class="image-slide" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+            <img src="{% static 'assets/img/img_slider3.png' %}" class="image-slide" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+          </div>
+          <button id="nextBtn" class="mr-5 absolute right-0 top-1/2 transform -translate-y-1/2 text-black z-10" style="display: block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bg-white bi bi-caret-right-square" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+              <path d="M5.795 12.456A.5.5 0 0 1 5.5 12V4a.5.5 0 0 1 .832-.374l4.5 4a.5.5 0 0 1 0 .748l-4.5 4a.5.5 0 0 1-.537.082"/>
+            </svg>
+            <!-- 오른쪽 화살표 아이콘 -->
+          </button>
+        </div>
+        
+        
+
+        <!-- Profile card -->
+        <div class="bg-white border border-gray-300 rounded-lg shadow-lg flex flex-col justify-between p-6" style="flex: 2.5;">
+          {% comment %} {{user.is_authenticated}} {% endcomment %}
+          {% if user.is_authenticated %}
+            <div class="flex justify-end">
+              <a href="{% url 'post_create' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-gray-500 hover:text-gray-900 bi bi-pencil-square cursor-pointer" viewbox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class="flex flex-col items-center justify-center flex-grow">
+              <img src="{{ user.profile_image.url }}" alt="Profile Picture" class="h-24 w-24 rounded-full mb-4 border border-gray-500">
+              <h3 class="text-center text-gray-900 text-xl mb-4">{{user.username}}님 반갑습니다.</h3>
+              <p class="text-center text-gray-600 text-base mb-4">같이 여행을 계획해요!</p>
+            </div>
+            <div class="flex justify-center space-x-4">
+
+              <div class="flex-1 text-center">
+                <a href="{% url 'user_profile' %}" class="bg-blue-400 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block w-full">
+                  프로필보기
+                </a>
+              </div>
+              <div class="flex-1 text-center">
+                <form action="{% url 'user_logout' %}" method="post">
+                  {% csrf_token %}
+                  <input type="submit" value="로그아웃" class="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block w-full cursor-pointer">
+                </form>
+              </div>
+            {% else %}
+              <div class="flex flex-col items-center justify-center flex-grow">
+                <img src="{% static 'assets/img/icon_user.png' %}" alt="Profile Picture" class="h-24 w-24 rounded-full mb-4">
+                <h3 class="text-center text-gray-900 text-xl mb-4">자신만의</h3>
+                <p class="text-center text-gray-600 text-base mb-4">여행 계획을 만들어주세요!</p>
+              </div>
+              <div class="flex justify-center space-x-4">
+
+                <div class="flex-1 text-center">
+                  <a href="{% url 'user_login' %}" class="bg-blue-400 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block w-full">
+                    로그인하기
+                  </a>
+                </div>
+
+                <div class="flex-1 text-center">
+                  <a href="{% url 'user_signup' %}" class="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block w-full">
+                    회원가입
+                  </a>
+                </div>
+              {% endif %}
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Search and Cards Container -->
+        <div class="flex justify-center my-4 mt-10 mb-5">
+          <div class="max-w-7xl w-full">
+            <!-- <div class="max-w-7xl"> -->
+
+            <!-- Search Section -->
+            <form action="" method="get">
+              <div class="flex rounded overflow-hidden  ml-20 mr-20">
+                <input name="q" value="{{ request.GET.q }}" class="border border-gray-300 px-4 py-2 w-5/6" placeholder="어떤 여행을 찾고 계신가요?">
+                <button type='submit' class="ml-3 flex-1 text-center bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block w-full">
+                  검색하기
+                </button>
+              </div>
+            </form>
+
+            <!-- Cards Section -->
+            <form action="" method="get">
+            <div class="grid grid-cols-7 gap-7 mt-5 ml-20 mr-20">
+              <!-- Individual Card 1 -->
+              <div class="bg-white rounded-lg shadow flex flex-col items-center p-3 cursor-pointer">
+                <img src="{% static 'assets/img/seoul.png' %}" alt="Description" class="w-16 h-16"/>                                     
+                <button name="q" value="서울">서울</button>
+              </div>
+              <!-- Individual Card 2 -->
+              <div class="bg-white rounded-lg shadow flex flex-col items-center p-3 cursor-pointer">
+                <img src="{% static 'assets/img/gyeonggi.png' %}" alt="Description" class="w-16 h-16"/> 
+                <button name="q" value="경기도">경기도</button>                                   
+              </div>
+              <!-- Individual Card 3 -->
+              <div class="bg-white rounded-lg shadow flex flex-col items-center p-3 cursor-pointer">
+                <img src="{% static 'assets/img/gangwon.png' %}" alt="Description" class="w-16 h-16"/> 
+                <button name="q" value="강원도">강원도</button> 
+              </div>
+
+              <!-- Individual Card 4 -->
+              <div class="bg-white rounded-lg shadow flex flex-col items-center p-3 cursor-pointer">
+                <img src="{% static 'assets/img/chungcheong.png' %}" alt="Description" class="w-16 h-16"/>  
+                <button name="q" value="충청도">충청도</button>
+              </div>
+
+              <!-- Individual Card 5 -->
+              <div class="bg-white rounded-lg shadow flex flex-col items-center p-3 cursor-pointer">
+                <img src="{% static 'assets/img/jeolla.png' %}" alt="Description" class="w-16 h-16"/>
+                <button name="q" value="전라도">전라도</button>  
+              </div>
+
+              <!-- Individual Card 6 -->
+              <div class="bg-white rounded-lg shadow flex flex-col items-center p-3 cursor-pointer">
+                <img src="{% static 'assets/img/gyeongsang.png' %}" alt="Description" class="w-16 h-16"/> 
+                <button name="q" value="경상도">경상도</button> 
+              </div>
+
+              <!-- Individual Card 7 -->
+              <div class="bg-white rounded-lg shadow flex flex-col items-center p-3 cursor-pointer">
+                <img src="{% static 'assets/img/jeju.png' %}" alt="Description" class="w-16 h-16"/>  
+                <button name="q" value="제주도">제주도</button>
+              </div>
+              <!-- ... repeat for other six cards with different text content -->
+            </div>
+          </form>
+          </div>
+        </div>
+
+        <!--show more 버튼을 추가해서 전체 목록 보여지도록 카카오 API는 무료이니 Key가 노출되어도 안심해도 된다. 따라서 나도 여기서 지도를 출력할때 카카오 이용하기-->
+
+        <!--이미지 리스트를 전달 가능한 사이트 : https://picsum.photos/ 이미지는 다 무료다. -> 해당 싸이트에서 https://picsum.photos/v2/list?page=2&limit=10 를 사용하면 스크롤링할때마다 10개씩 추가적인 사진을 계속 로딩해주는 것 해당 사이트에서 무료로 이미지 가져와서 스크롤 할때 사용하면 좋을듯(우리나라 관광명소등의 사진도 있는지 확인하기)-->
+
+        <div class='border-b border border-gray-300 mb-5 mt-10 mx-10'>
+        </div>
+
+        <!-- Card list -->
+        <div class="p-8 relative mb-10">
+          <div class="flex items-center justify-between ml-8 mr-8">
+            <p class='text-gray-900 text-xl font-semibold'>전체 내역</p>
+            <a href="{% url 'post_detail_list' %}?q=all_list" class="text-sm text-black font-bold py-2 px-3">
+              더보기
+            </a>
+            
+          </div>
+           
+          <div class="flex items-center justify-between">
+            <button id="main-slideLeft" class="absolute left-0 z-10 bg-gray-200 rounded-full text-gray-600 p-4 ml-3">
+              &lt;
+            </button>
+
+            <div class="overflow-hidden mx-8">
+              <div class="flex transition-transform duration-300 space-x-4 main-slider-container">
+                {% for post in object_list %}
+                <a href="{% url 'post_detail' post.pk %}">
+                  <div class="bg-white border border-gray-300 rounded-lg flex-shrink-0 card">
+                    <div class="relative image-container cursor-pointer">
+                      <img src="{{post.image.url}}" alt="Description" class="w-full h-auto"/>        
+                      <div class="absolute top-2 right-2 bg-white rounded-full p-2 border border-gray-500">
+                        {% if user.is_authenticated %}
+                          {% if post.pk in favorites %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-yellow-500 bi bi-star-fill " viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            {% else %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                              <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                            </svg>
+                          {% endif %}
+                        {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                        </svg>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="p-4">
+                      <h3 class="text-lg font-bold">{{post.title}}</h3>
+                      <p class="text-sm font-bold">{{post.author}}</p>
+                      <p class='text-sm'>조회수
+                        {{ post.count }}회 ·
+                        {{ post.createDate|timesince }}
+                        전</p>
+                      <div class="flex justify-between items-center mt-3">
+                        <div>
+                          {% comment %} <span class="text-sm font-semibold">Tag</span> {% endcomment %}
+                          {% for tag in post.tags.all %}
+                           <span class="px-3 py-2 border border-gray-500 rounded-full text-sm text-gray-800">#{{ tag.name }}</span>
+                          {% endfor %}
+                          <span class="px-3 py-2 border border-gray-500 rounded-full text-sm text-gray-800">#{{post.category}}</span>
+
+                        </div>
+                        <div class="flex items-center">
+                          <!-- Heart icon placeholder -->
+                          <svg class="fill-current text-red-500 w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20">
+                            <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.07l-6.828-6.828a4 4 0 010-5.656z"/>
+                          </svg>
+                          <span class="text-sm">1</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                {% endfor %}                
+              </div>
+            </div>
+            <button id="main-slideRight" class="absolute right-0 z-10 bg-gray-200 rounded-full text-gray-600 p-4 mr-3">
+              &gt;
+            </button>
+          </div>
+        </div>
+
+        <div class='border-b border border-gray-300 mb-5 mt-10 mx-10'>
+        </div>
+        
+        <!-- 본인 -->
+        <div class="p-8 relative mb-20">
+          <div class="flex items-center justify-between ml-8 mr-8">
+            <p class='text-gray-900 text-xl font-semibold'>나의 등록 내역</p>
+            <a href="{% url 'post_detail_list' %}?q=user_list" class="text-sm text-black font-bold py-2 px-3">
+              더보기
+            </a>
+          </div>
+          <div class="flex items-center justify-between">
+            <button id="slideLeft" class="absolute left-0 z-10 bg-gray-200 rounded-full text-gray-600 p-4 ml-3">
+              &lt;
+            </button>
+
+            <div class="overflow-hidden mx-8">
+              <div class="flex transition-transform duration-300 space-x-4 slider-container">
+                {% for post in user_posts %}
+                <a href="{% url 'post_detail' post.pk %}">
+                  <div class="bg-white border border-gray-300 rounded-lg flex-shrink-0 card">
+                    <div class="relative image-container cursor-pointer">
+                      <img src="{{post.image.url}}" alt="Description" class="w-full h-auto"/>                                     
+                      <div class="absolute top-2 right-2 bg-white rounded-full p-2 border border-gray-500">
+                        {% if user.is_authenticated %}
+                          {% if post.pk in favorites %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-yellow-500 bi bi-star-fill " viewBox="0 0 16 16">
+                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            {% else %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                              <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                            </svg>
+                          {% endif %}
+                        {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                        </svg>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="p-4">
+                      <h3 class="text-lg font-bold">{{post.title}}</h3>
+                      <p class="text-sm font-bold">{{post.author}}</p>
+                      <p class='text-sm'>조회수
+                        {{ post.count }}회 ·
+                        {{ post.createDate|timesince }}
+                        전</p>
+                      <div class="flex justify-between items-center mt-3">
+                        <div>
+                          {% comment %} <span class="text-sm font-semibold">Tag</span> {% endcomment %}
+                          {% for tag in post.tags.all %}
+                           <span class="px-3 py-2 border border-gray-500 rounded-full text-sm text-gray-800">#{{ tag.name }}</span>
+                          {% endfor %}
+                          <span class="px-3 py-2 border border-gray-500 rounded-full text-sm text-gray-800">#{{post.category}}</span>
+
+                        </div>
+                        <div class="flex items-center">
+                          <!-- Heart icon placeholder -->
+                          <svg class="fill-current text-red-500 w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20">
+                            <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.07l-6.828-6.828a4 4 0 010-5.656z"/>
+                          </svg>
+                          <span class="text-sm">1</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                {% endfor %}   
+                <!-- 추가하기 -->
+                <!-- 'Add' card -->
+                <a href="{% url 'post_create' %}">
+                <div class="bg-white border border-gray-300 rounded-lg flex-shrink-0 card flex flex-col justify-center items-center py-4">
+                  
+                  <!-- 중앙 정렬된 버튼 -->
+                  <button class="add-button" aria-label="Add new item" onclick="addNewItem()" style="outline: none; background: transparent;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-circle" viewbox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                    </svg>
+                  </button>
+                  <!-- 중앙 정렬된 텍스트 -->
+                  <h3 class="text-lg font-bold mt-5">새 항목 추가</h3>
+                </div>
+              </a>
+
+              </div>
+            </div>
+            <button id="slideRight" class="absolute right-0 z-10 bg-gray-200 rounded-full text-gray-600 p-4 mr-3">
+              &gt;
+            </button>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+    {% block extrajs %}
+    <script src="{% static 'js/post.js' %}"></script>
+    <script src="{% static 'js/slider-img.js' %}"></script>
+    {% endblock %}
+
+
+  {% endblock %}
