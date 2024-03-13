@@ -1,0 +1,15 @@
+<!-- predict_form.html -->
+
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <h1>여행지 추천 받기</h1>
+  <form method="post" action="{% url 'predict_view' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">예측하기</button>
+  </form>
+</div>
+{% endblock %}

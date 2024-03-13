@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Page Transition</title>
+    <!-- Tailwind CSS Link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    {% block extrastyle %}{% endblock %}
+  </head>
+
+  <body class="bg-gray-50">
+
+    <div class="flex h-screen">
+      <!-- Left Side -->
+      <div class="w-1/2 flex flex-col justify-center items-center relative">
+        <!-- 이미지 박스를 감싸는 링크 -->
+        <a href="{% url 'post_list' %}" class="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center relative border border-gray-300 group">
+          <!-- Content for Left Box -->
+          <img src="{% static 'assets/img/img_korea_map.png' %}" alt="Korea Map" class="max-w-xs h-auto transition duration-300 ease-in-out group-hover:opacity-50"/>
+          <div class="absolute inset-0 flex justify-center items-center opacity-0 transition duration-300 ease-in-out group-hover:opacity-100">
+            <span class="text-white text-lg bg-black bg-opacity-50 px-4 py-2 rounded">메인 페이지로 이동</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Line -->
+      <div class="absolute h-full border-l border-gray-200" style="left: 50%"></div>
+
+      <!-- Right Side -->
+      <div id="right-content" class="w-1/2 flex justify-center items-center">
+        {% block register_content %}{% endblock %}
+      </div>
+
+      <script src="{% static 'js/register.js' %}"></script>
+      {% block extrajs %}{% endblock %}
+    </body>
+  </html>
