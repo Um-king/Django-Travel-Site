@@ -90,7 +90,56 @@
 
 
 ## 3. 요구사항 명세와 기능 명세 
+```mermaid
+    sequenceDiagram
+    actor A as client
+    participant B as Client
+    participant C as Server
+    participant D as GPT API
 
+    A->>B: 회원가입 
+    B->>C: 유저 등록
+    A->>B: 로그인 요청
+    B->>C: 로그인 정보 요구
+    A->>C: id, pw 전달
+    alt 로그인 성공
+        C->>B: Main Page 이동
+        B->>A: 로그인 성공
+    else 로그인 실패
+        C->>B: 재입력 요청
+        B->>A: 로그인 실패
+    end
+    Note over A,C: 사용자가 로그인하지 않았을 때
+    B->>C: 게시글 목록 요청
+    C->>C: 게시글 목록 조회
+    C-->>B: 전체 게시글 목록 
+    Note over A,D: 사용자가 로그인했을 때
+    A->>C: 로그인 요청
+    C->>C: 사용자 정보 검증
+    C->>C: 게시글 목록 조회
+    C-->>B: 전체, 본인 게시글 목록 
+    A->>B: 프로필 수정 요청
+    B->>C: 프로필 수정
+
+    A->>B: 게시글 생성
+    B->>D: API 호출
+    activate D
+    D-->>B: API 호출 확인
+    deactivate D
+    B->>A: 대화 가능 상태 출력
+    A->>B: 질문 작성
+    B->>D: 질문 전달
+    activate D
+    D->>D: 메시지 처리
+    D-->>B: 답변 반환
+    deactivate D
+    B->>B: 데이터 가공
+    B->>A: 계획 출력
+    A->>B: 게시글 수정/삭제
+    A->>B: 댓글 작성
+    B->>C: 생성,수정,삭제,댓글 반영
+    B->>C: 즐겨찾기 추가/제거
+```
 
 ## 4. 프로젝트 구조와 개발 일정
 ### 4.1 프로젝트 구조
