@@ -132,4 +132,4 @@ LOGIN_URL = '/register/login/'
 MODEL_ROOT = BASE_DIR / 'post/model/'
 
 # Open AI API key
-OPENAI_API_KEY = os.getenv('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')
+OPENAI_API_KEY = os.getenv('')
