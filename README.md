@@ -265,26 +265,63 @@ gantt
         </tr>
         <tr>
             <td>
-		<img src="README_img/01_project.png" width="100%"/>
+		<img src="README_img/wireframe_login.png" width="100%"/>
             </td>
             <td>
-                <img src="README_img/02_Login Page.png" width="100%"/>
+                <img src="README_img/wireframe_signup.png" width="100%"/>
             </td>
         </tr>
         <tr>
            <td>
-                <img src="README_img/03_Main Page.png" width="100%"/>
+                <img src="README_img/wireframe_profile.png" width="100%"/>
             </td>
 	     <td>
-                <img src="README_img/04_Chatting Page.png" width="100%"/>
+                <img src="README_img/wireframe_main.png" width="100%"/>
             </td>
         </tr>
         <tr>
             <td>
-                <img src="README_img/05_Result Page.png" width="100%"/>
+                <img src="README_img/wireframe_create.png" width="100%"/>
+            </td>
+            <td>
+                <img src="README_img/wireframe_detail_list.png" width="100%"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="README_img/wireframe_detail.png" width="100%"/>
             </td>
             <td>
             </td>
         </tr>
     </tbody>
 </table>
+
+
+
+## 7. 메인 기능
+여행 계획 작성 서비스는 사용자의 요청에 따라 사용자의  일정을 작성해주는 서비스로, OpenAI API를 통해 사용자의 요구사항에 맞는 일정을 생성하는 서비스입니다.
+대화형 기능을 통해 사용자로부터 여행에 대한 구체적인 선호도와 요구사항을 파악하고 API를 통해 대화 내용에 따른 결과를 만듭니다. 
+분석 결과가 반환되면 계획의 내용을 출력하고 지도를 활용하여 관광명소 및 맛집 위치를 표현합니다.
+
+
+```mermaid
+graph TD
+    A[사용자] --> |로그인| B(로그인 페이지)
+    A[사용자] --> |유저 등록| C(회원가입 페이지)
+    B --> D(메인 페이지)
+    C --> |자동 로그인| D
+    D --> H(프로필 페이지)
+    D --> E{게시글 생성}
+    E --> F(대화 기능)
+    F --> |질문| G(OpenAI API)
+    G --> |답변| F
+    F --> |결과 해석|I(게시글 작성)
+    I --> J(게시글 세부 내역)
+    D --> J
+    J --> K(댓글 작성)
+    K --> M(대댓글 작성)
+    J --> L(즐겨찾기)
+```
+
+
