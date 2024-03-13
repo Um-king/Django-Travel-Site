@@ -1,6 +1,6 @@
 # ✈️ Travel
 <p align="center">
-<!--이미지 공간-->
+<img src="README_img/img_title.png" width="85%" height="450px"/>
 </p>
 
 ## 📝 Django Project 
