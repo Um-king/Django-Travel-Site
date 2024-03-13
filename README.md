@@ -302,7 +302,9 @@ gantt
 
 
 ## 6. 데이터베이스 모델링(ERD)
-
+<p align="center">
+<img src="README_img/ERD.png" width="60%"/>
+</p>
 
 ## 7. Architecture
 
