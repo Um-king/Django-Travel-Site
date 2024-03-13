@@ -327,10 +327,10 @@ gantt
         </tr>
         <tr>
             <td>
-		        <img src="README_img/wireframe_login.png" width="100%"/>
+		        <img src="README_img/ui_login.png" width="100%"/>
             </td>
             <td>
-                <img src="README_img/wireframe_signup.png" width="100%"/>
+                <img src="README_img/ui_signup.png" width="100%"/>
             </td>
         </tr>
         <tr>
@@ -339,10 +339,10 @@ gantt
         </tr>
         <tr>
            <td>
-                <img src="README_img/wireframe_profile.png" width="100%"/>
+                <img src="README_img/ui_profile.png" width="100%"/>
             </td>
 	     <td>
-                <img src="README_img/wireframe_main.png" width="100%"/>
+                <img src="README_img/ui_main.png" width="100%"/>
             </td>
         </tr>
         <tr>
@@ -351,10 +351,10 @@ gantt
         </tr>
         <tr>
             <td>
-                <img src="README_img/wireframe_create.png" width="100%"/>
+                <img src="README_img/ui_create.png" width="100%"/>
             </td>
             <td>
-                <img src="README_img/wireframe_detail_list.png" width="100%"/>
+                <img src="README_img/ui_detail_list.png" width="100%"/>
             </td>
         </tr>
         <tr>
@@ -363,7 +363,7 @@ gantt
         </tr>
         <tr>
             <td>
-                <img src="README_img/wireframe_detail.png" width="100%"/>
+                <img src="README_img/ui_detail.png" width="100%"/>
             </td>
             <td>
             </td>
