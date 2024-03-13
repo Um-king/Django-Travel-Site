@@ -435,7 +435,7 @@ def get_ai_response(request):
         # 사용자가 질문을 완료했습니다. 추천을 시작해주세요.
         
         # OpenAI API 호출
-        openai.api_key = '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'
+        openai.api_key = ''
         # response = openai.Completion.create(
         #   engine="gpt-3.5-turbo",
         #   prompt=prompt,
